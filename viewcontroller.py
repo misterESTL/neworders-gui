@@ -1,3 +1,10 @@
+# Created on May 31, 2013
+# @author: Tom Eaton
+#
+# This is the Tk frontend for Key Accounts.  Orders are converted 
+# from incoming format into Everest Advanced Edition 5.0 compatible
+# CSV header and data files.
+
 import os
 import Tkinter as tk
 import tkFileDialog
@@ -5,8 +12,8 @@ import tkFileDialog
 from lib import model
 
 class Application(tk.Frame):
-    """ The Tk GUI interface for converting new orders to Everest formatted
-        CSV files."""
+    '''The Tk GUI interface for converting new orders to Everest formatted \
+    CSV files.'''
 
     def __init__(self, title, description, ftypes, master=None):
         """ Create the base window for the application. """
@@ -108,10 +115,9 @@ class Application(tk.Frame):
         self.writeText('Starting Conversion.')
         self.writeText('--------------------')
 
-        # Initiate conversion here
-        model.convertOrder(paths)
+        procOrder = model.ConvertOrder(paths)
 
-        self.writeText(model.statusText)
+        self.writeText(procOrder.statusText)
         self.writeText('--------------------')
         self.writeText('Complete.')
 
