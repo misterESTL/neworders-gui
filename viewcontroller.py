@@ -47,7 +47,7 @@ class Application(tk.Frame):
         self.outLabel.grid(row=4, column=0)
         self.outEntry = tk.Entry(self, width=70)
         self.outEntry.grid(row=5, column=0, rowspan=2)
-        self.outEntry.insert(0, 'C:\\')
+        self.outEntry.insert(0, 'C:\\Users\\Tom\\Desktop')
 
         self.outBrowse = tk.Button(self, text='...', width=3, 
                                    command=self.outPathBrowse)
