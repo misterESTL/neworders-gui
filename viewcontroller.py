@@ -1,8 +1,8 @@
 # Created on May 31, 2013
 # @author: Tom Eaton
 #
-# This is the Tk frontend for Key Accounts.  Orders are converted 
-# from incoming format into Everest Advanced Edition 5.0 compatible
+# This is the Tk frontend for new orders from key accounts.  Orders are 
+# converted from incoming format into Everest Advanced Edition 5.0 compatible
 # CSV header and data files.
 
 import os
@@ -27,7 +27,7 @@ class Application(tk.Frame):
         self.master.minsize(500, 290)
         self.master.maxsize(500, 290)
         self.master.title(self.title)
-        self.master.wm_iconbitmap('favicon.ico')
+
 
     def createWidgets(self):
         """ Generate widgets """
@@ -47,7 +47,7 @@ class Application(tk.Frame):
         self.outLabel.grid(row=4, column=0)
         self.outEntry = tk.Entry(self, width=70)
         self.outEntry.grid(row=5, column=0, rowspan=2)
-        self.outEntry.insert(0, 'C:\\Users\\Tom\\Desktop')
+        self.outEntry.insert(0, 'C:\\Documents and Settings\\tom\\Desktop')
 
         self.outBrowse = tk.Button(self, text='...', width=3, 
                                    command=self.outPathBrowse)
@@ -62,6 +62,7 @@ class Application(tk.Frame):
         self.outText.grid(row=9, column=0, columnspan=2, padx=5, pady=5)
         self.writeText(self.description)
 
+
     def inFileBrowse(self):
         """ Use the askopenfilename tk dialog to get input file. """
         self.inFile = tkFileDialog.askopenfilename(filetypes=self.ftypes)
@@ -69,6 +70,7 @@ class Application(tk.Frame):
             self.inFile = self.inFile.replace('/', '\\')
             self.inEntry.delete(0, tk.END)
             self.inEntry.insert(0, self.inFile)
+
 
     def outPathBrowse(self):
         """ Use the askdirectory tk dialog to get output path. """
@@ -78,6 +80,7 @@ class Application(tk.Frame):
             self.outEntry.delete(0, tk.END)
             self.outEntry.insert(0, self.outPath)
 
+
     def writeText(self, str):
         """ Write to the text widget. """
         # Rewrite to support *args
@@ -85,11 +88,13 @@ class Application(tk.Frame):
         self.outText.insert('end', str + '\n')
         self.outText.configure(state='disabled')
 
+
     def clearText(self):
         """ Clear the text widget. """
         self.outText.configure(state='normal')
         self.outText.delete(1.0, tk.END)
         self.outText.configure(state='disabled')
+
 
     def checkInput(self):
         """ Check for valid input file and output path. """
@@ -108,6 +113,7 @@ class Application(tk.Frame):
         else:
             self.clearText()
             self.writeText('Error: Invalid file and directory!')
+
             
     def convert(self, paths):
         """ Initiate conversion. """
@@ -120,6 +126,7 @@ class Application(tk.Frame):
         self.writeText(procOrder.statusText)
         self.writeText('--------------------')
         self.writeText('Complete.')
+        
 
 app = Application(model.title, model.description, model.filetypes)
 app.mainloop()
